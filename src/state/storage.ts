@@ -26,13 +26,16 @@ function isNonEmptyString(value: unknown): value is string {
 
 function parseActivity(value: unknown): Activity | null {
   if (!isRecord(value)) return null
-  const { id, time, place, cost, category } = value
+  const { id, time, place, cost, category, date } = value
   if (!isNonEmptyString(id)) return null
   if (typeof time !== 'string') return null
   if (typeof place !== 'string') return null
   if (typeof cost !== 'number' || !Number.isFinite(cost)) return null
   if (typeof category !== 'string' || !CATEGORY_SET.has(category)) return null
-  return { id, time, place, cost, category: category as Category }
+  if (date !== undefined && typeof date !== 'string') return null
+  const activity: Activity = { id, time, place, cost, category: category as Category }
+  if (typeof date === 'string') activity.date = date
+  return activity
 }
 
 function parsePackingItem(value: unknown): PackingItem | null {
