@@ -39,6 +39,7 @@ function AddActivityButton() {
           place: 'Museum',
           cost: 50,
           category: 'Aktivität',
+          date: '2025-05-12',
         })
       }
     >
@@ -101,7 +102,7 @@ describe('BudgetPage', () => {
 
   it('grows total, category sum and bar width as soon as an activity is added', () => {
     seedTrip([
-      { id: 'a', time: '09:00', place: 'Café', cost: 20, category: 'Verpflegung' },
+      { id: 'a', time: '09:00', place: 'Café', cost: 20, category: 'Verpflegung', date: '2025-05-12' },
     ])
     const { container } = renderBudget()
 

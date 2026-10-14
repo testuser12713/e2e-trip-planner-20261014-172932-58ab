@@ -64,8 +64,14 @@ export function activityToFormValues(activity: Activity): ActivityFormValues {
   }
 }
 
+/**
+ * Build the stored input for an activity. `date` is the day of the trip the
+ * activity belongs to; it comes from the selected day plan, not from a form
+ * field, so it is passed in separately.
+ */
 export function formValuesToActivityInput(
   values: ActivityFormValues,
+  date: string,
 ): ActivityInput | null {
   const errors = validateActivity(values)
   if (Object.keys(errors).length > 0) return null
@@ -78,5 +84,6 @@ export function formValuesToActivityInput(
     place: values.place.trim(),
     cost,
     category: values.category as Category,
+    date,
   }
 }
