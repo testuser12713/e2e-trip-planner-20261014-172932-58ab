@@ -1,0 +1,115 @@
+.budget-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.budget-page__heading {
+  margin-bottom: var(--space-3);
+}
+
+.budget-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.budget-chart__total {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0);
+}
+
+.budget-chart__total-label {
+  font-size: var(--size-caption);
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.budget-chart__total-value {
+  font-family: var(--font-numeric);
+  font-size: var(--size-h1);
+  line-height: 34px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.budget-chart__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.budget-chart__row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.budget-chart__label {
+  font-size: var(--size-small);
+  font-weight: 500;
+  color: var(--color-fg_soft);
+}
+
+.budget-chart__track {
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  background: var(--color-surface_alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.budget-chart__bar {
+  display: block;
+  height: 100%;
+  min-width: 4px;
+  border-radius: var(--radius-pill);
+  transition: width 200ms ease-out;
+}
+
+.budget-chart__hairline {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-border);
+  transform: translateY(-50%);
+}
+
+.budget-chart__value {
+  min-width: 88px;
+  text-align: right;
+  font-family: var(--font-numeric);
+  font-size: var(--size-body);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 639px) {
+  .budget-chart__row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'label value'
+      'track track';
+    gap: var(--space-1) var(--space-2);
+  }
+
+  .budget-chart__label {
+    grid-area: label;
+  }
+
+  .budget-chart__value {
+    grid-area: value;
+  }
+
+  .budget-chart__track {
+    grid-area: track;
+  }
+}
