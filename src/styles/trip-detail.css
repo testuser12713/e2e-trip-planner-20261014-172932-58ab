@@ -1,0 +1,255 @@
+/* Day plan + activity list/form. Uses the tokens defined in index.css. */
+
+.day-tabs {
+  margin-bottom: var(--space-4);
+}
+
+.day-tabs .segmented__item {
+  cursor: pointer;
+  font-family: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.day-plan__content {
+  display: block;
+}
+
+.day-plan__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.day-plan__heading {
+  font-size: var(--size-h2);
+  line-height: 26px;
+}
+
+.day-plan-empty {
+  margin: 0;
+}
+
+/* Activity list */
+.activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.activity-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto 96px 88px;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 56px;
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.activity-row:last-child {
+  border-bottom: none;
+}
+
+.activity-row:hover {
+  background: var(--color-surface_alt);
+}
+
+.activity-row__time {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--size-body);
+  font-weight: 600;
+  color: var(--color-fg);
+}
+
+.activity-row__place {
+  font-size: var(--size-body);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.activity-row__cost {
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--size-body);
+  font-weight: 600;
+  text-align: right;
+}
+
+.activity-row__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-0);
+}
+
+/* Category tag */
+.category-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--size-caption);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.category-tag--anreise {
+  background: rgba(14, 124, 134, 0.12);
+  color: var(--color-cat_anreise);
+  border: 1px solid rgba(14, 124, 134, 0.24);
+}
+
+.category-tag--unterkunft {
+  background: rgba(59, 91, 219, 0.12);
+  color: var(--color-cat_unterkunft);
+  border: 1px solid rgba(59, 91, 219, 0.24);
+}
+
+.category-tag--verpflegung {
+  background: rgba(181, 71, 8, 0.12);
+  color: var(--color-cat_verpflegung);
+  border: 1px solid rgba(181, 71, 8, 0.24);
+}
+
+.category-tag--aktivitaet {
+  background: rgba(6, 118, 71, 0.12);
+  color: var(--color-cat_aktivitaet);
+  border: 1px solid rgba(6, 118, 71, 0.24);
+}
+
+.category-tag--shopping {
+  background: rgba(142, 68, 173, 0.12);
+  color: var(--color-cat_shopping);
+  border: 1px solid rgba(142, 68, 173, 0.24);
+}
+
+.category-tag--sonstiges {
+  background: rgba(107, 114, 128, 0.12);
+  color: var(--color-cat_sonstiges);
+  border: 1px solid rgba(107, 114, 128, 0.24);
+}
+
+/* Activity form */
+.activity-form {
+  max-width: 560px;
+}
+
+.activity-form__title {
+  margin-bottom: var(--space-3);
+}
+
+.activity-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.activity-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field__label {
+  margin-bottom: 6px;
+  color: var(--color-fg_soft);
+  font-size: var(--size-small);
+  font-weight: 500;
+}
+
+.field__input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-2);
+  color: var(--color-fg);
+  font-family: inherit;
+  font-size: var(--size-body);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.field__input:focus {
+  outline: 2px solid var(--color-accent_soft);
+  border-color: var(--color-accent);
+}
+
+.field__input--number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.field__select {
+  height: 44px;
+}
+
+.field__input--error {
+  border-color: var(--color-danger);
+  background: #fffbfb;
+}
+
+.field__error {
+  display: flex;
+  gap: var(--space-0);
+  margin-top: var(--space-0);
+  color: var(--color-danger);
+  font-size: var(--size-small);
+}
+
+@media (min-width: 640px) {
+  .activity-form__fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 639px) {
+  .activity-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'time tag'
+      'place place'
+      'cost actions';
+    row-gap: var(--space-0);
+  }
+
+  .activity-row__time {
+    grid-area: time;
+  }
+
+  .activity-row__place {
+    grid-area: place;
+  }
+
+  .activity-row .category-tag {
+    grid-area: tag;
+    justify-self: end;
+  }
+
+  .activity-row__cost {
+    grid-area: cost;
+    text-align: left;
+  }
+
+  .activity-row__actions {
+    grid-area: actions;
+  }
+}
