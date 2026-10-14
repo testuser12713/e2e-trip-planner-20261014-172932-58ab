@@ -24,7 +24,7 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
 
-function parseActivity(value: unknown): Activity | null {
+function parseActivity(value: unknown, fallbackDate: string): Activity | null {
   if (!isRecord(value)) return null
   const { id, time, place, cost, category, date } = value
   if (!isNonEmptyString(id)) return null
@@ -33,9 +33,16 @@ function parseActivity(value: unknown): Activity | null {
   if (typeof cost !== 'number' || !Number.isFinite(cost)) return null
   if (typeof category !== 'string' || !CATEGORY_SET.has(category)) return null
   if (date !== undefined && typeof date !== 'string') return null
-  const activity: Activity = { id, time, place, cost, category: category as Category }
-  if (typeof date === 'string') activity.date = date
-  return activity
+  // Activities persisted before the day plan existed carry no `date`; attach
+  // them to the trip's first day so no stored plan is lost on load.
+  return {
+    id,
+    time,
+    place,
+    cost,
+    category: category as Category,
+    date: typeof date === 'string' ? date : fallbackDate,
+  }
 }
 
 function parsePackingItem(value: unknown): PackingItem | null {
@@ -58,7 +65,7 @@ function parseTrip(value: unknown): Trip | null {
 
   const parsedActivities: Activity[] = []
   for (const entry of activities) {
-    const activity = parseActivity(entry)
+    const activity = parseActivity(entry, startDate)
     if (!activity) return null
     parsedActivities.push(activity)
   }

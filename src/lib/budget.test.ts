@@ -4,7 +4,7 @@ import type { Activity, Category } from '../types'
 import { aggregateBudget } from './budget'
 
 function activity(id: string, cost: number, category: Category): Activity {
-  return { id, time: '10:00', place: 'Test', cost, category }
+  return { id, time: '10:00', place: 'Test', cost, category, date: '2025-05-12' }
 }
 
 describe('aggregateBudget', () => {

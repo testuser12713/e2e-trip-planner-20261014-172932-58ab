@@ -47,6 +47,7 @@ describe('TripContext', () => {
         place: 'Markt',
         cost: 12.5,
         category: 'Verpflegung',
+        date: '2025-05-13',
       })
     })
     act(() => {
@@ -104,6 +105,7 @@ describe('TripContext', () => {
         place: 'Trattoria',
         cost: 24,
         category: 'Verpflegung',
+        date: '2025-03-10',
       })
     })
     act(() => {

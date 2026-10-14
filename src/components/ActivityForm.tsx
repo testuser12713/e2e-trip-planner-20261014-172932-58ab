@@ -11,6 +11,9 @@ import type { ActivityFormErrors, ActivityFormValues } from '../lib/activityVali
 
 export interface ActivityFormProps {
   initial?: Activity
+  // ISO `YYYY-MM-DD` day of the trip the activity belongs to. It comes from
+  // the selected day plan rather than a form field, so the form does not edit it.
+  date: string
   onSubmit: (input: ActivityInput) => void
   onCancel: () => void
 }
@@ -24,7 +27,7 @@ const EMPTY_VALUES: ActivityFormValues = {
 
 type FieldName = keyof ActivityFormErrors
 
-export function ActivityForm({ initial, onSubmit, onCancel }: ActivityFormProps) {
+export function ActivityForm({ initial, date, onSubmit, onCancel }: ActivityFormProps) {
   const [values, setValues] = useState<ActivityFormValues>(() =>
     initial ? activityToFormValues(initial) : EMPTY_VALUES,
   )
@@ -49,7 +52,7 @@ export function ActivityForm({ initial, onSubmit, onCancel }: ActivityFormProps)
     event.preventDefault()
     setSubmitted(true)
 
-    const input = formValuesToActivityInput(values)
+    const input = formValuesToActivityInput(values, date)
     if (!input) return
     onSubmit(input)
   }

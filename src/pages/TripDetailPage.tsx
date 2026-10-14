@@ -50,13 +50,13 @@ export function TripDetailPage() {
   }
 
   function handleCreate(input: ActivityInput) {
-    addActivity(trip!.id, { ...input, date: selectedDay })
+    addActivity(trip!.id, input)
     closeForm()
   }
 
   function handleUpdate(input: ActivityInput) {
     if (!editing) return
-    updateActivity(trip!.id, editing.id, { ...input, date: editing.date ?? selectedDay })
+    updateActivity(trip!.id, editing.id, input)
     closeForm()
   }
 
@@ -110,12 +110,13 @@ export function TripDetailPage() {
         )}
 
         {mode === 'create' && (
-          <ActivityForm onSubmit={handleCreate} onCancel={closeForm} />
+          <ActivityForm date={selectedDay} onSubmit={handleCreate} onCancel={closeForm} />
         )}
 
         {mode === 'edit' && editing && (
           <ActivityForm
             initial={editing}
+            date={editing.date}
             onSubmit={handleUpdate}
             onCancel={closeForm}
           />

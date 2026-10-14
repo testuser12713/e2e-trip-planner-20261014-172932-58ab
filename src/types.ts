@@ -21,10 +21,10 @@ export interface Activity {
   place: string
   cost: number
   category: Category
-  // ISO `YYYY-MM-DD` day of the trip this activity belongs to. Optional so
-  // activities persisted before the day plan existed still parse; the day
-  // plan only shows activities whose `date` matches the selected day.
-  date?: string
+  // ISO `YYYY-MM-DD` day of the trip this activity belongs to. Required so an
+  // activity always belongs to exactly one day of the trip period; the day
+  // plan shows the activities whose `date` matches the selected day.
+  date: string
 }
 
 export interface PackingItem {
@@ -53,7 +53,8 @@ export interface ActivityInput {
   place: string
   cost: number
   category: Category
-  date?: string
+  // ISO `YYYY-MM-DD` day of the trip this activity belongs to.
+  date: string
 }
 
 export interface AppState {
